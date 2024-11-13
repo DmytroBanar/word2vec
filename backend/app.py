@@ -34,21 +34,21 @@ def similarity():
 
 @app.route('/anology', methods=['POST'])
 def antology():
-    # Set defaults
+    # Встановлення значень за замовчуванням
     word = None
     pair = []
-    num_analogies = 10  # Default number of analogies
+    num_analogies = 10  # Кількість аналогій за замовчуванням
 
     data = request.json
     word = data.get('word')
     pair = data.get('pair', [])
     num_analogies = data.get('num_analogies', num_analogies)
 
-    # Check required fields
+    # Перевірка необхідних полів
     if not word or len(pair) != 2:
-        return jsonify({"error": "Please provide 'word' and 'pair' with exactly two elements."}), 400
+        return jsonify({"error": "Будь ласка, надайте 'word' та пару з точно двох елементів."}), 400
 
-    # Run the model's analogy function
+    # Виконання функції аналогії моделі
     try:
         analogy_words = model.most_similar(positive=[word, pair[1]], negative=[pair[0]], topn=num_analogies)
         return jsonify(analogy_words)
@@ -205,7 +205,7 @@ def plot_character_connections():
         nx.draw_networkx_nodes(G, pos, node_size=700)
         nx.draw_networkx_labels(G, pos, font_size=12, font_weight='bold')
         nx.draw_networkx_edges(G, pos, width=2, alpha=0.5, edge_color='b')
-        plt.title("Word Relationships Between Characters and Objects")
+        plt.title("Словесні зв'язки між персонажами та об'єктами")
 
         # Додавання відстаней між зв'язками (схожість)
         edge_labels = nx.get_edge_attributes(G, 'weight')
