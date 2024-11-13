@@ -14,7 +14,7 @@ Word2Vec Explorer allows users to interactively explore the relationships betwee
 - Word2Vec
 - React
 - Node.js
-- Additional Python libraries: scikit-learn, matplotlib
+- Additional Python libraries: scikit-learn, matplotlib, base64, networkx
 
 ### Installing
 1. Clone the repository:
