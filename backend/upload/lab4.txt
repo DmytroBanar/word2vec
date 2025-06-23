@@ -1,0 +1,90 @@
+5) db.Cars.find({ year: { $gte: 1990 } }).sort({ year: -1 }) - Вивести всі машини, які були випущені в 1990 році і пізніше, впорядкувати за роком випуску в порядку спадання
+6) db.Cars.find({ brand: "Audi", color: "White" }) - Вивести всі машини марки Audi білого кольору (White)
+7) db.Cars.find({ price: { $lt: 25000 } }).sort({ price: 1 }).limit(3) - Вибрати машини, які дешевше 25000, впорядкувати за зростанням і вивести перші 3
+8) Вивести машини чорного кольору (Black) або машини марки Mersedes
+db.Cars.find({
+  $or: [
+    { color: "Black" },
+    { brand: "Mercedes" }
+  ]
+}) 
+9) Для всіх машин, які старше 30 років (1988) додати поле discount і встановити
+значення – 30.
+db.Cars.updateMany(
+  { year: { $lt: 1992 } }, // вибрати всі машини, які старше 30 років (рік випуску менше 1992)
+  { $set: { discount: 30 } } // додати поле discount та встановити значення -30
+)
+10) Вивести всі машини, крім машин марки BMW
+db.Cars.find(
+    { brand: { $ne: "BMW" } }
+)
+11) Вивести суму цін, середню ціну, мінімальну ціну і макси
+мальну ціну на
+автомобілі марки Volvo
+db.Cars.aggregate([
+    {
+        $match: { brand: "Volvo" } // Відфільтруйте машини тільки марки Volvo
+    },
+    {
+        $group: {
+            _id: null,
+            total_price: { $sum: "$price" }, // Сума цін
+            avg_price: { $avg: "$price" }, // Середня ціна
+            min_price: { $min: "$price" }, // Мінімальна ціна
+            max_price: { $max: "$price" }  // Максимальна ціна
+        }
+    }
+])
+12) Виконат и імпорт з файлу suppliers.json
+13)Викона ти імпорт з файлу supplies.json
+14)Вивести всі постачання (Supplies), для яких постачальник (supplier) має статус Активний (Suppliers.isActive = true)
+db.Supplies.aggregate([
+  {
+    $lookup: {
+      from: "Supplier",
+      localField: "supplier",
+      foreignField: "id",
+      as: "supplier_info"
+    }
+  },
+  {
+    $unwind: "$supplier_info"
+  },
+  {
+    $match: {
+      "supplier_info.isActive": true
+    }
+  },
+  {
+    $project: {
+      _id: 1,
+      id: 1,
+      supplier: 1,
+      carID: 1,
+      date: 1
+    }
+  }
+])
+15)Вивести ім'я компанії (companyName), адреса (address), телефон (phone) постачальників (Suppliers), дату постачання(date) з колекції Supplies, які постачали автомобілі марки Mersedes, впорядкувати за датою постачання в порядку спадання (Для перетворення рядка в дату можна використовувати $dateFromString)
+16)Вивести список всіх існуючих кольорів автомобілів
+db.Cars.distinct("color")
+17)Вивести список всіх існуючих кольорів для BMW
+db.Cars.distinct("color", { "brand": "BMW" })
+18)Вивести унікальний список всіх брендів і відповідну їм кількість наявних автомобілів
+db.cars.aggregate([
+    { $group: { _id: "$brand", count: { $sum: 1 } } }
+])
+19)Сформувати команду на видалення колекції Cars
+db.Cars.drop()
+20)Сформувати команду на видалення БД Products
+db.dropDatabase()
+
+
+
+
+
+
+
+
+
+

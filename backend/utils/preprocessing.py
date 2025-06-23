@@ -4,6 +4,7 @@ import pickle
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from gensim.models import Word2Vec, KeyedVectors
+from werkzeug.utils import secure_filename
 
 # Ініціалізація лематизатора та стоп-слів
 lemmatizer = WordNetLemmatizer()
@@ -54,10 +55,10 @@ def preprocess_text(file_path, final_path, final_file):
     os.makedirs(final_path, exist_ok=True)
 
     # Збереження KeyedVectors у форматі .kv
-    base_name = os.path.splitext(final_file)[0]
-    model.wv.save(f"{final_path}/{base_name}.kv")
+    filename = secure_filename(final_file)  # напр. test.txt
+    base_name = os.path.splitext(filename)[0]  # буде 'test'
+    model.wv.save(f"{final_path}/{final_file}.kv")
     print(f"Векторизована модель збережена у: {final_path}/{final_file}.kv")
-    
     return f"{final_path}/{final_file}.kv"
 
 def extract_keywords(model_path, topn=10):

@@ -151,7 +151,7 @@ def reset_password():
         """, (hashed_password, token))
         conn.commit()
 
-        # ✅ Надсилання повідомлення
+        # Надсилання повідомлення
         msg = Message(
             subject="Ваш пароль змінено",
             sender=current_app.config['MAIL_USERNAME'],
