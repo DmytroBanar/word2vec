@@ -29,19 +29,19 @@ Word2Vec Explorer allows users to interactively explore the relationships betwee
    git clone https://github.com/DmytroBanar/word2vec.git
 
 ### Executing program
-1. ```bash cd frontend_react
-    ```bash npm install
-    ```bash npm run build
+1.  ```bash cd frontend_react
+    npm install
+    npm run build
     ...
-    ```bash cd frontend_react/word2vec-explorer
-    ```bash npm start
+    cd frontend_react/word2vec-explorer
+    npm start
 
-2. ```bash python3 -m venv venv
-    ```bash source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```bash pip install Flask gensim scikit-learn matplotlib networkx python-dotenv flask-jwt-extended flask-mail mysql-connector-python
+2. python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    pip install Flask gensim scikit-learn matplotlib networkx python-dotenv flask-jwt-extended flask-mail mysql-connector-python
     ...
-    ```bash cd backend
-    ```bash python app.py
+    cd backend
+    python app.py
 
 
 ### Authors
