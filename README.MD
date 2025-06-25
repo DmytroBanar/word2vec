@@ -36,7 +36,7 @@ Word2Vec Explorer allows users to interactively explore the relationships betwee
     cd frontend_react/word2vec-explorer
     npm start
 
-2. python3 -m venv venv
+2.  ```bash python3 -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     pip install Flask gensim scikit-learn matplotlib networkx python-dotenv flask-jwt-extended flask-mail mysql-connector-python
     ...
