@@ -1,20 +1,27 @@
-# Word2Vec Explorer
+# Web application for processing and semantic analysis of text data
 
 ## Overview
 A web application for exploring word embeddings using Word2Vec. This tool provides functionalities for word similarity, analogies, and visualizing word clusters.
-
+Users can upload their own text files, train custom models, analyze relationships between words, and interactively visualize results through an intuitive web interface.
 ## Description
-Word2Vec Explorer allows users to interactively explore the relationships between words using Word2Vec models. The application is built with a Flask backend and a React frontend. Users can input words and view their similarities, find analogies, and visualize word clusters using PCA and KMeans.
+Word2Vec Explorer allows users to interactively explore the relationships between words using Word2Vec models. The application is built with a Flask backend and a React frontend. Users can upload their own text files, train custom models, input words to view their similarities, find analogies, and visualize word clusters using PCA and KMeans. The system also supports user authentication, management of personal and default models, and provides interactive analytics and visualizations for deeper text analysis.
 
 ## Getting Started
 
 ### Dependencies
 - Python 3.8+
 - Flask
-- Word2Vec
+- Gensim (Word2Vec)
+- scikit-learn
+- matplotlib
+- networkx
+- python-dotenv
+- flask-jwt-extended
+- flask-mail
+- mysql-connector-python (або sqlite3 для тестування)
 - React
 - Node.js
-- Additional Python libraries: scikit-learn, matplotlib
+- (Frontend) react-chartjs-2, chart.js, d3.js
 
 ### Installing
 1. Clone the repository:
@@ -22,16 +29,16 @@ Word2Vec Explorer allows users to interactively explore the relationships betwee
    git clone https://github.com/DmytroBanar/word2vec.git
 
 ### Executing program
-1. cd frontend_react
+1.  ```bash cd frontend_react
     npm install
     npm run build
     ...
     cd frontend_react/word2vec-explorer
     npm start
 
-2. python3 -m venv venv
+2.  ```bash python3 -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    pip install Flask gensim scikit-learn matplotlib base64 networkx
+    pip install Flask gensim scikit-learn matplotlib networkx python-dotenv flask-jwt-extended flask-mail mysql-connector-python
     ...
     cd backend
     python app.py
